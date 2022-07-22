@@ -41,9 +41,4 @@ public class ClientController {
     public ResponseEntity<Long> deleteById(@PathVariable Long id) {
         return ResponseEntity.ok(clientFacade.deleteById(id));
     }
-
-    @PostMapping("clients")
-    public ResponseEntity<Future<Void>> createClientList(@RequestBody List<ClientDTO> clients) {
-        return ResponseEntity.ok(clientFacade.createClientList(clients));
-    }
 }

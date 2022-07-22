@@ -17,6 +17,4 @@ public interface ClientFacade {
     Client findById(Long id);
 
     Long deleteById(Long id);
-
-    CompletableFuture<Void> createClientList(List<ClientDTO> clients);
 }

@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:mysql://db-clients.cfabvnownbjb.us-west-2.rds.amazonaws.com:3306/db-clients
+    username: admin
+    password: z1&Y45DH
+    driverClassName: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true

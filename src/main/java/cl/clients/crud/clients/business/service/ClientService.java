@@ -39,10 +39,8 @@ public class ClientService implements ClientFacade {
             if (null == client.getClientId()) {
                 throw new EntityExistsException("Id must not be empty or null");
             }
-            if (null != findById(client.getClientId())) {
-                return clientRepository.save(ClientFactory.getClientEntity(client));
-            }
-            throw new EntityExistsException("Client does not exist");
+            findById(client.getClientId());
+            return clientRepository.save(ClientFactory.getClientEntity(client));
         } catch (Exception ex) {
             throw new PersistenceException(ex.getMessage());
         }
@@ -63,14 +61,7 @@ public class ClientService implements ClientFacade {
         clientRepository.deleteById(id);
         return id;
     }
-
-    @Override
-    public CompletableFuture<Void> createClientList(List<ClientDTO> clients) {
-        return CompletableFuture.runAsync(() -> clients
-                .forEach(client -> clientRepository.save(ClientFactory.getClientEntity(client))));
-    }
-
-    public Client findClientByDni(String dni) {
+    private Client findClientByDni(String dni) {
         return clientRepository.findClientByDni(dni);
     }
 }

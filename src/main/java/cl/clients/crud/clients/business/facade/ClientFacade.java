@@ -4,7 +4,6 @@ import cl.clients.crud.clients.domain.dto.ClientDTO;
 import cl.clients.crud.clients.domain.entity.Client;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 public interface ClientFacade {
 

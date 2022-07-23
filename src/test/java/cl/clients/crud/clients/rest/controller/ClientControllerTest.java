@@ -1,31 +1,23 @@
-package cl.clients.crud.clients.controller;
+package cl.clients.crud.clients.rest.controller;
 
 import cl.clients.crud.clients.business.facade.ClientFacade;
-import cl.clients.crud.clients.domain.dto.ClientDTO;
 import cl.clients.crud.clients.domain.entity.Client;
 import cl.clients.crud.clients.mock.ClientMock;
-import cl.clients.crud.clients.rest.controller.ClientController;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class ClientControllerTest {
+class ClientControllerTest {
 
     @Mock
     private ClientFacade clientFacade;

@@ -1,6 +1,5 @@
-package cl.clients.crud.clients.service;
+package cl.clients.crud.clients.business.service;
 
-import cl.clients.crud.clients.business.service.ClientService;
 import cl.clients.crud.clients.domain.dto.ClientDTO;
 import cl.clients.crud.clients.domain.entity.Client;
 import cl.clients.crud.clients.mock.ClientMock;
@@ -12,18 +11,16 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.persistence.EntityExistsException;
 import javax.persistence.PersistenceException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class ClientServiceTest {
+class ClientServiceTest {
 
     @Mock
     private ClientRepository repository;
@@ -75,7 +72,8 @@ public class ClientServiceTest {
     @Test
     void testClientUpdateExistingClientShouldThrowException() {
         when(repository.findById(Long.valueOf(100))).thenReturn(Optional.empty());
-        Assertions.assertThrows(PersistenceException.class, () -> service.update(ClientMock.getUpdateRequest()));
+        ClientDTO request = ClientMock.getUpdateRequest();
+        Assertions.assertThrows(PersistenceException.class, () -> service.update(request));
     }
 
     @Test

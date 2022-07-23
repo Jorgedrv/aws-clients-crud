@@ -2,8 +2,10 @@ package cl.clients.crud.clients.business.factory;
 
 import cl.clients.crud.clients.domain.dto.ClientDTO;
 import cl.clients.crud.clients.domain.entity.Client;
-
 public class ClientFactory {
+
+    private ClientFactory() {
+    }
 
     public static Client getClientEntity(ClientDTO client) {
         return Client.builder()

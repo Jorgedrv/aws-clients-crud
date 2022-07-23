@@ -6,14 +6,12 @@ import cl.clients.crud.clients.domain.dto.ClientDTO;
 import cl.clients.crud.clients.domain.entity.Client;
 import cl.clients.crud.clients.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceException;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 @Service
 @RequiredArgsConstructor

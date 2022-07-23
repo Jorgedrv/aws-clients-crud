@@ -2,6 +2,10 @@ plugins {
 	id 'org.springframework.boot' version '2.7.1'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id 'idea'
+	id 'jacoco'
+	id 'org.sonarqube' version '3.0'
+	id 'info.solidsoft.pitest' version '1.5.2'
 }
 
 group = 'cl.clients.crud'
@@ -31,3 +35,9 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+/* -------------------------------- */
+/* - Include other gradle scripts - */
+/* -------------------------------- */
+apply from: "/gradle/build-sonarqube.gradle"
+apply from: "/gradle/build-test.gradle"

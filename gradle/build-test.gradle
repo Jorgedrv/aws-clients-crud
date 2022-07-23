@@ -1,0 +1,64 @@
+/* ============================================================================
+   This file contains the configurations for reports
+   ============================================================================
+
+   Included from: "${rootProject.projectDir}/build.gradle"
+   ============================================================================
+ */
+
+jacoco {
+	toolVersion = "0.8.6"
+	reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+test {
+    finalizedBy jacocoTestReport // report is always generated after tests run
+    jacoco {
+        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+        classDumpDir = file("$buildDir/jacoco/classpathdumps")
+    }
+}
+
+jacocoTestReport {
+	group = "Reporting"
+	description = "Generate Jacoco coverage reports after running tests."
+    reports {
+        xml.enabled true
+        csv.enabled false
+        html.enabled true
+    }
+}
+
+task applicationCodeCoverageReport(type:JacocoReport) {
+	sourceSets sourceSets.main
+}
+
+tasks.withType(Test) {
+    testLogging {
+        exceptionFormat "full"
+        events "passed", "skipped", "failed"
+    }
+}
+
+pitest {
+    pitestVersion = "1.5.2"
+    testPlugin = "junit5"
+    targetClasses = ["com.baas.*"]
+    excludedClasses = [
+            'cl.clients.crud.clients.ClientsApplication',
+            'cl.clients.crud.clients.domain.*'
+    ]
+    threads = '4' as int
+    outputFormats = ['XML', 'HTML']
+    mutationThreshold = 100
+    coverageThreshold = 100
+    reportDir = 'build/reports/mutations/' as File
+    timestampedReports = false
+    failWhenNoMutations = true
+    historyInputLocation = 'build/history.pitest'
+    historyOutputLocation = 'build/history.pitest'
+    verbose = false
+}
+
+build.dependsOn 'jacocoTestReport'
+build.dependsOn 'pitest'
